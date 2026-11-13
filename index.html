@@ -47,11 +47,17 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius
 .card:hover{border-color:var(--accent)}
 .feat{grid-column:1/-1;flex-direction:row}
 .thumb{background:var(--soft);display:grid;place-items:center;padding:14px;border-bottom:1px solid var(--line);overflow:hidden}
-.feat .thumb{width:38%;flex:none;border-bottom:0;border-right:1px solid var(--line)}
-.thumb:has(img){padding:0;height:190px}
-.feat .thumb:has(img){height:auto;min-height:240px}
+.feat .thumb{width:40%;flex:none;border-bottom:0;border-right:1px solid var(--line)}
+.thumb:has(> img){padding:0;height:210px}
+.feat .thumb:has(> img){height:auto;min-height:240px}
 .thumb svg{width:100%;max-height:130px}
-.thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.thumb > img{width:100%;height:100%;object-fit:cover;display:block}
+.thumb:has(.phones){padding:14px;height:240px}
+.phones{display:flex;justify-content:center;align-items:center;gap:12px;height:100%;width:100%}
+.phones img{max-height:100%;max-width:48%;width:auto;height:auto;object-fit:contain;border-radius:8px;border:1px solid var(--line);box-shadow:0 4px 12px rgba(0,0,0,.15);display:block;background:var(--bg)}
+.feat .thumb:has(.phones){height:auto;min-height:280px}
+.feat .phones{flex-direction:column;gap:12px}
+.feat .phones img{max-width:100%;max-height:48%}
 .s{stroke:var(--muted);fill:none;stroke-width:2;stroke-linecap:round}
 .a{stroke:var(--accent);fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
 .f{fill:var(--accent)}
@@ -71,7 +77,15 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius
 .skills dt{font-weight:600}
 .skills dd{margin:0;color:var(--muted)}
 footer{margin-top:64px;color:var(--muted);font-size:.9rem}
-@media (max-width:700px){.grid{grid-template-columns:1fr}.feat{flex-direction:column}.feat .thumb{width:auto;border-right:0;border-bottom:1px solid var(--line)}.feat .thumb:has(img){height:200px;min-height:0}}
+@media (max-width:700px){
+  .grid{grid-template-columns:1fr}
+  .feat{flex-direction:column}
+  .feat .thumb{width:auto;border-right:0;border-bottom:1px solid var(--line)}
+  .feat .thumb:has(> img){height:200px;min-height:0}
+  .feat .thumb:has(.phones){height:240px;min-height:0}
+  .feat .phones{flex-direction:row}
+  .feat .phones img{max-width:48%;max-height:100%}
+}
 @media (max-width:560px){.photo{width:84px;height:84px;font-size:1.4rem}.skills{grid-template-columns:1fr;gap:0}.skills dd{margin-bottom:10px}.pair{grid-template-columns:1fr}.pair div+div{border-left:0;border-top:1px solid var(--line)}}
 </style>
 </head>
@@ -103,10 +117,11 @@ footer{margin-top:64px;color:var(--muted);font-size:.9rem}
   <div class="grid">
 
     <article class="card feat">
-      <div class="thumb" aria-hidden="true">
-        <!-- Cuando guardes tu captura en img/translator.png, borra el <svg> y descomenta la siguiente línea: -->
-        <!-- <img src="img/translator.png" alt="Editor de Translator Platform"> -->
-        <svg viewBox="0 0 320 120"><rect class="b" x="14" y="14" width="124" height="92" rx="6"/><rect class="b" x="182" y="14" width="124" height="92" rx="6"/><path class="s" d="M28 34h90M28 50h76M28 66h86M28 82h60"/><path class="a" d="M196 34h90M196 50h80M196 66h88M196 82h64"/><path class="a" d="M148 60h24m-8-8l8 8-8 8"/></svg>
+      <div class="thumb">
+        <div class="phones">
+          <img src="img/translator/1.png" alt="Interfaz de carga y traducción en Translator Platform">
+          <img src="img/translator/2.png" alt="Editor web de revisión en Translator Platform">
+        </div>
       </div>
       <div class="body">
         <p class="tag">Proyecto personal · en desarrollo</p>
@@ -123,10 +138,11 @@ footer{margin-top:64px;color:var(--muted);font-size:.9rem}
     </article>
 
     <article class="card">
-      <div class="thumb" aria-hidden="true">
-        <!-- Cuando guardes tu captura en img/iot-api.png, borra el <svg> y descomenta la siguiente línea: -->
-        <!-- <img src="img/iot-api.png" alt="Documentación Swagger de API REST IoT"> -->
-        <svg viewBox="0 0 320 120"><rect class="b" x="14" y="38" width="64" height="44" rx="6"/><rect class="b" x="128" y="38" width="64" height="44" rx="6"/><rect class="b" x="242" y="38" width="64" height="44" rx="6"/><path class="a" d="M78 60h50M192 60h50"/><path class="s" d="M46 52v16M160 52v16M274 52v16"/></svg>
+      <div class="thumb">
+        <div class="phones">
+          <img src="img/iot-api/1.png" alt="Documentación Swagger de API REST IoT">
+          <img src="img/iot-api/2.png" alt="Consola y pruebas de WebSocket IoT">
+        </div>
       </div>
       <div class="body">
         <p class="tag">Proyecto académico · desplegado en AWS</p>
@@ -143,10 +159,11 @@ footer{margin-top:64px;color:var(--muted);font-size:.9rem}
     </article>
 
     <article class="card">
-      <div class="thumb" aria-hidden="true">
-        <!-- Cuando guardes tu captura en img/tuzorutas.png, borra el <svg> y descomenta la siguiente línea: -->
-        <!-- <img src="img/tuzorutas.png" alt="Pantalla de rutas en TuzoRutas"> -->
-        <svg viewBox="0 0 320 120"><path class="a" d="M24 92C70 92 80 30 130 36s60 50 110 30 50-34 56-40"/><circle class="f" cx="24" cy="92" r="6"/><circle class="f" cx="130" cy="36" r="6"/><circle class="f" cx="240" cy="66" r="6"/><circle class="f" cx="296" cy="26" r="6"/></svg>
+      <div class="thumb">
+        <div class="phones">
+          <img src="img/tuzorutas/1.png" alt="Mapa de rutas en TuzoRutas">
+          <img src="img/tuzorutas/2.png" alt="Detalle de paradas en TuzoRutas">
+        </div>
       </div>
       <div class="body">
         <p class="tag">Proyecto en equipo de 3</p>
@@ -164,8 +181,11 @@ footer{margin-top:64px;color:var(--muted);font-size:.9rem}
 
     <!-- PLANTILLA PARA AGREGAR MÁS PROYECTOS (descomenta este bloque y rellena tus datos):
     <article class="card">
-      <div class="thumb" aria-hidden="true">
-        <img src="img/nuevo-proyecto.png" alt="Captura del proyecto">
+      <div class="thumb">
+        <div class="phones">
+          <img src="img/carpeta-proyecto/1.png" alt="Captura 1 del proyecto">
+          <img src="img/carpeta-proyecto/2.png" alt="Captura 2 del proyecto">
+        </div>
       </div>
       <div class="body">
         <p class="tag">Tipo de proyecto · contexto</p>
