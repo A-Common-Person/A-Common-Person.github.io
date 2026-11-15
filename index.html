@@ -1,665 +1,450 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Erik Ivan Quijano González · Desarrollador Full Stack</title>
-<meta name="description" content="Portafolio de Erik Ivan Quijano González: desarrollo Full Stack, APIs y despliegue en AWS.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Newsreader:opsz,wght@6..72,600;6..72,700&display=swap" rel="stylesheet">
-<style>
-:root{
-  --bg:#f8fafc;
-  --surface:#ffffff;
-  --surface-subtle:#f1f5f9;
-  --ink:#0f172a;
-  --muted:#475569;
-  --line:#e2e8f0;
-  --line-strong:#cbd5e1;
-  --accent:#1d4ed8;
-  --accent-hover:#1e40af;
-  --accent-soft:rgba(29,78,216,.08);
-  --accent-border:rgba(29,78,216,.28);
-  --shadow-sm:0 1px 2px rgba(15,23,42,.04);
-  --shadow-md:0 10px 28px -8px rgba(15,23,42,.08),0 4px 10px -4px rgba(15,23,42,.04);
-  --glow:radial-gradient(ellipse 75% 45% at 50% -10%,rgba(29,78,216,.09),transparent);
-  --nav-bg:rgba(248,250,252,.82);
-  color-scheme:light;
-  box-sizing:border-box;
-  padding-top:env(safe-area-inset-top,0px);
-  padding-bottom:env(safe-area-inset-bottom,0px);
-}
-@media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){
-    --bg:#090d16;
-    --surface:#101726;
-    --surface-subtle:#162033;
-    --ink:#f1f5f9;
-    --muted:#94a3b8;
-    --line:#1e293b;
-    --line-strong:#334155;
-    --accent:#60a5fa;
-    --accent-hover:#3b82f6;
-    --accent-soft:rgba(96,165,250,.11);
-    --accent-border:rgba(96,165,250,.32);
-    --shadow-sm:0 1px 2px rgba(0,0,0,.3);
-    --shadow-md:0 14px 32px -8px rgba(0,0,0,.55),0 4px 12px -4px rgba(0,0,0,.35);
-    --glow:radial-gradient(ellipse 75% 45% at 50% -10%,rgba(59,130,246,.16),transparent);
-    --nav-bg:rgba(9,13,22,.82);
-    color-scheme:dark;
-  }
-}
-:root[data-theme="dark"]{
-  --bg:#090d16;
-  --surface:#101726;
-  --surface-subtle:#162033;
-  --ink:#f1f5f9;
-  --muted:#94a3b8;
-  --line:#1e293b;
-  --line-strong:#334155;
-  --accent:#60a5fa;
-  --accent-hover:#3b82f6;
-  --accent-soft:rgba(96,165,250,.11);
-  --accent-border:rgba(96,165,250,.32);
-  --shadow-sm:0 1px 2px rgba(0,0,0,.3);
-  --shadow-md:0 14px 32px -8px rgba(0,0,0,.55),0 4px 12px -4px rgba(0,0,0,.35);
-  --glow:radial-gradient(ellipse 75% 45% at 50% -10%,rgba(59,130,246,.16),transparent);
-  --nav-bg:rgba(9,13,22,.82);
-  color-scheme:dark;
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:76px}
-body{
-  margin:0;
-  background:var(--bg);
-  background-image:var(--glow);
-  background-repeat:no-repeat;
-  color:var(--ink);
-  font:16.5px/1.65 "Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
-  -webkit-font-smoothing:antialiased;
-  text-rendering:optimizeLegibility;
-}
-
-/* Barra superior minimalista */
-.topbar{
-  position:sticky;
-  top:0;
-  z-index:20;
-  backdrop-filter:blur(12px);
-  -webkit-backdrop-filter:blur(12px);
-  background:var(--nav-bg);
-  border-bottom:1px solid var(--line);
-}
-.topbar-inner{
-  max-width:940px;
-  margin:0 auto;
-  padding:12px 24px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:16px;
-}
-.brand{
-  font-family:"JetBrains Mono",monospace;
-  font-size:.85rem;
-  font-weight:500;
-  color:var(--ink);
-  text-decoration:none;
-  letter-spacing:-.01em;
-}
-.brand span{color:var(--accent)}
-.nav-links{
-  display:flex;
-  align-items:center;
-  gap:20px;
-  list-style:none;
-  margin:0;
-  padding:0;
-}
-.nav-links a{
-  font-size:.88rem;
-  font-weight:500;
-  color:var(--muted);
-  text-decoration:none;
-  transition:color .18s ease;
-}
-.nav-links a:hover{color:var(--ink)}
-.theme-btn{
-  appearance:none;
-  border:1px solid var(--line);
-  background:var(--surface);
-  color:var(--muted);
-  border-radius:8px;
-  padding:5px 10px;
-  font:500 .8rem "Inter",sans-serif;
-  cursor:pointer;
-  transition:border-color .18s ease,color .18s ease,background .18s ease;
-}
-.theme-btn:hover{border-color:var(--line-strong);color:var(--ink)}
-
-main{max-width:940px;margin:0 auto;padding:52px 24px 80px}
-main>p,.job,.skills,.lead,.pair,.contact{max-width:760px}
-
-h1,h2,h3{
-  font-family:"Newsreader","Iowan Old Style",Palatino,Georgia,serif;
-  font-weight:700;
-  line-height:1.14;
-  margin:0;
-  letter-spacing:-.02em;
-}
-h1{font-size:clamp(2.35rem,6vw,3.45rem)}
-h2{
-  font-size:1.65rem;
-  margin:64px 0 12px;
-  display:flex;
-  align-items:center;
-  gap:12px;
-}
-h2::after{
-  content:"";
-  flex:1;
-  height:1px;
-  background:var(--line);
-  max-width:140px;
-}
-h3{font-size:1.25rem;letter-spacing:-.015em}
-p{margin:0 0 14px}
-a{color:var(--accent);text-decoration-thickness:1px;text-underline-offset:3px}
-a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
-
-/* Hero */
-.hero{display:flex;align-items:center;gap:26px}
-.photo{
-  margin:0;
-  flex:none;
-  width:116px;
-  height:116px;
-  border-radius:50%;
-  overflow:hidden;
-  background:var(--surface-subtle);
-  border:2px solid var(--surface);
-  box-shadow:0 0 0 1px var(--line-strong),var(--shadow-md);
-  display:grid;
-  place-items:center;
-  font:700 1.8rem Georgia,serif;
-  color:var(--accent);
-}
-.photo img{width:100%;height:100%;object-fit:cover;object-position:center 20%}
-
-.lead{font-size:1.15rem;color:var(--muted);max-width:36em;margin-top:20px;line-height:1.6}
-.lead strong{color:var(--ink);font-weight:600}
-.contact{display:flex;flex-wrap:wrap;gap:10px 14px;margin-top:22px;padding:0;list-style:none}
-.contact a{
-  display:inline-flex;
-  align-items:center;
-  gap:6px;
-  padding:6px 13px;
-  border-radius:8px;
-  background:var(--surface);
-  border:1px solid var(--line);
-  color:var(--ink);
-  text-decoration:none;
-  font-size:.9rem;
-  font-weight:500;
-  box-shadow:var(--shadow-sm);
-  transition:border-color .18s ease,transform .18s ease,color .18s ease;
-}
-.contact a:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px)}
-
-.pair{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  margin-top:32px;
-  border:1px solid var(--line);
-  border-radius:12px;
-  overflow:hidden;
-  background:var(--surface);
-  box-shadow:var(--shadow-sm);
-}
-.pair div{padding:16px 20px}
-.pair div+div{border-left:1px solid var(--line);background:var(--surface-subtle)}
-.pair small{
-  display:block;
-  color:var(--muted);
-  font-family:"JetBrains Mono",monospace;
-  font-size:.75rem;
-  text-transform:uppercase;
-  letter-spacing:.04em;
-  margin-bottom:4px;
-}
-.pair span{font-weight:600;font-size:1rem;color:var(--ink)}
-
-.sub{color:var(--muted);margin-bottom:6px}
-
-/* Grid y tarjetas de proyectos */
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:24px}
-.card{
-  display:flex;
-  flex-direction:column;
-  border:1px solid var(--line);
-  border-radius:14px;
-  overflow:hidden;
-  background:var(--surface);
-  box-shadow:var(--shadow-sm);
-  transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease;
-}
-.card:hover{
-  transform:translateY(-3px);
-  box-shadow:var(--shadow-md);
-  border-color:var(--accent-border);
-}
-.feat{grid-column:1/-1;flex-direction:row}
-
-.thumb{
-  background:var(--surface-subtle);
-  display:grid;
-  place-items:center;
-  padding:14px;
-  border-bottom:1px solid var(--line);
-  overflow:hidden;
-  position:relative;
-}
-.feat .thumb{width:42%;flex:none;border-bottom:0;border-right:1px solid var(--line)}
-.thumb:has(> img){padding:0;height:245px}
-.feat .thumb:has(> img){height:auto;min-height:260px}
-.thumb svg{width:100%;max-height:130px}
-.thumb > img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  object-position:top center;
-  display:block;
-  transition:transform .35s ease;
-}
-.card:hover .thumb > img{transform:scale(1.02)}
-
-.thumb:has(.phones){padding:16px;height:245px}
-.phones{display:flex;justify-content:center;align-items:center;gap:14px;height:100%;width:100%}
-.phones img{
-  max-height:100%;
-  max-width:47%;
-  width:auto;
-  height:auto;
-  object-fit:contain;
-  border-radius:10px;
-  border:1px solid var(--line-strong);
-  box-shadow:0 6px 16px rgba(0,0,0,.16);
-  display:block;
-  background:var(--surface);
-  transition:transform .28s ease;
-}
-.card:hover .phones img{transform:translateY(-2px)}
-.feat .thumb:has(.phones){height:auto;min-height:290px}
-.feat .phones{flex-direction:column;gap:12px}
-.feat .phones img{max-width:100%;max-height:48%}
-
-.body{padding:22px 24px 24px;display:flex;flex-direction:column;flex:1}
-.tag{
-  font-family:"JetBrains Mono",monospace;
-  font-size:.78rem;
-  color:var(--accent);
-  margin:0 0 6px;
-}
-.card h3{margin-bottom:10px;font-size:1.3rem}
-.card > .body > p:first-of-type + h3 + p{color:var(--muted);font-size:.96rem}
-.card ul.pts{margin:6px 0 14px;padding-left:18px;color:var(--ink);font-size:.95rem}
-.card ul.pts li{margin-bottom:6px}
-.card ul.pts li::marker{color:var(--accent)}
-.role{
-  font-size:.9rem;
-  margin-bottom:14px;
-  padding:8px 12px;
-  border-radius:8px;
-  background:var(--surface-subtle);
-  color:var(--muted);
-}
-.role strong{color:var(--ink)}
-
-.chips{display:flex;flex-wrap:wrap;gap:6px;list-style:none;padding:0;margin:0 0 18px}
-.chips li{
-  font-family:"JetBrains Mono",monospace;
-  font-size:.76rem;
-  padding:3px 10px;
-  background:var(--accent-soft);
-  border:1px solid var(--accent-border);
-  border-radius:999px;
-  color:var(--accent);
-  font-weight:500;
-}
-
-.card-footer{
-  margin-top:auto;
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-}
-.btn-group{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-  align-items:center;
-}
-.btn{
-  display:inline-flex;
-  align-items:center;
-  gap:6px;
-  padding:9px 15px;
-  border:1px solid var(--line-strong);
-  background:var(--surface);
-  color:var(--ink);
-  border-radius:8px;
-  text-decoration:none;
-  font-weight:600;
-  font-size:.88rem;
-  transition:background .18s ease,color .18s ease,border-color .18s ease,transform .18s ease;
-}
-.btn::after{content:"↗";font-size:.95em;transition:transform .18s ease}
-.btn:hover{
-  background:var(--accent);
-  border-color:var(--accent);
-  color:#ffffff;
-}
-.btn:hover::after{transform:translate(2px,-2px)}
-
-.btn-primary{
-  background:var(--accent);
-  border-color:var(--accent);
-  color:#ffffff;
-}
-.btn-primary:hover{
-  background:var(--accent-hover);
-  border-color:var(--accent-hover);
-  color:#ffffff;
-}
-
-.aws-note{
-  margin:0;
-  font-size:.8rem;
-  line-height:1.45;
-  color:var(--muted);
-  padding:8px 11px;
-  border-radius:8px;
-  background:var(--surface-subtle);
-  border-left:3px solid var(--accent);
-}
-
-/* Experiencia como línea de tiempo */
-.job{
-  position:relative;
-  padding:4px 0 4px 24px;
-  margin-top:16px;
-  border-left:2px solid var(--line-strong);
-}
-.job::before{
-  content:"";
-  position:absolute;
-  left:-6px;
-  top:9px;
-  width:10px;
-  height:10px;
-  border-radius:50%;
-  background:var(--accent);
-  box-shadow:0 0 0 4px var(--accent-soft);
-}
-.meta{
-  font-family:"JetBrains Mono",monospace;
-  color:var(--muted);
-  font-size:.82rem;
-  margin:4px 0 12px;
-}
-.job ul{margin:8px 0 0;padding-left:18px;font-size:.96rem}
-.job li{margin-bottom:6px}
-.job li::marker{color:var(--accent)}
-
-/* Habilidades en tarjeta estructurada */
-.skills{
-  display:grid;
-  grid-template-columns:160px 1fr;
-  margin:16px 0 0;
-  border:1px solid var(--line);
-  border-radius:12px;
-  background:var(--surface);
-  overflow:hidden;
-  box-shadow:var(--shadow-sm);
-}
-.skills dt,.skills dd{
-  padding:13px 18px;
-  border-bottom:1px solid var(--line);
-}
-.skills dt:last-of-type,.skills dd:last-of-type{border-bottom:0}
-.skills dt{
-  font-family:"JetBrains Mono",monospace;
-  font-size:.82rem;
-  font-weight:500;
-  color:var(--ink);
-  background:var(--surface-subtle);
-}
-.skills dd{margin:0;color:var(--muted);font-size:.95rem}
-
-footer{
-  margin-top:72px;
-  padding-top:24px;
-  border-top:1px solid var(--line);
-  color:var(--muted);
-  font-size:.88rem;
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:space-between;
-  gap:8px;
-}
-
-@media (max-width:740px){
-  .grid{grid-template-columns:1fr}
-  .feat{flex-direction:column}
-  .feat .thumb{width:auto;border-right:0;border-bottom:1px solid var(--line)}
-  .feat .thumb:has(> img){height:220px;min-height:0}
-  .feat .thumb:has(.phones){height:245px;min-height:0}
-  .feat .phones{flex-direction:row}
-  .feat .phones img{max-width:47%;max-height:100%}
-}
-@media (max-width:580px){
-  .nav-links{display:none}
-  .hero{flex-direction:column;align-items:flex-start;gap:16px}
-  .photo{width:92px;height:92px;font-size:1.4rem}
-  .skills{grid-template-columns:1fr}
-  .skills dt{border-bottom:0;padding-bottom:4px}
-  .skills dd{padding-top:2px}
-  .pair{grid-template-columns:1fr}
-  .pair div+div{border-left:0;border-top:1px solid var(--line)}
-}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Erik Ivan Quijano González · Desarrollador Full Stack</title>
+  <meta name="description" content="Portafolio y CV web de Erik Ivan Quijano González: desarrollo Full Stack, APIs y despliegue en AWS.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Newsreader:opsz,wght@6..72,600;6..72,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<nav class="topbar" aria-label="Navegación principal">
-  <div class="topbar-inner">
-    <a class="brand" href="#">erik<span>.dev</span></a>
-    <ul class="nav-links">
-      <li><a href="#sobre-mi">Sobre mí</a></li>
-      <li><a href="#proyectos">Proyectos</a></li>
-      <li><a href="#experiencia">Experiencia</a></li>
-      <li><a href="#habilidades">Habilidades</a></li>
-    </ul>
-    <button class="theme-btn" id="themeToggle" type="button" aria-label="Cambiar tema">Tema</button>
-  </div>
-</nav>
-
-<main>
-  <header>
-    <div class="hero">
-      <figure class="photo"><img src="img/perfil.jpg" alt="Erik Ivan Quijano González"></figure>
-      <h1>Erik Ivan Quijano González</h1>
+  <nav class="topbar" aria-label="Navegación principal">
+    <div class="topbar-inner">
+      <a class="brand" href="#">erik<span>.dev</span></a>
+      <ul class="nav-links">
+        <li><a href="#sobre-mi">Sobre mí</a></li>
+        <li><a href="#proyectos">Proyectos</a></li>
+        <li><a href="#experiencia">Experiencia</a></li>
+        <li><a href="#habilidades">Habilidades</a></li>
+      </ul>
+      <button class="theme-btn" id="themeToggle" type="button" aria-label="Cambiar tema">Tema</button>
     </div>
-    <p class="lead"><strong>Desarrollador Full Stack.</strong> Construyo APIs, aplicaciones web y móviles, y herramientas completas que van desde la arquitectura del código hasta el despliegue en la nube.</p>
-    <ul class="contact">
-      <li><a href="mailto:erik.qglz@gmail.com">erik.qglz@gmail.com</a></li>
-      <li><a href="https://github.com/A-Common-Person" target="_blank" rel="noopener">GitHub</a></li>
-      <li><a href="https://www.linkedin.com/in/erik-ivan-quijano-gonz%C3%A1lez-313360355" target="_blank" rel="noopener">LinkedIn</a></li>
-    </ul>
-    <div class="pair" aria-label="Idea y resultado">
-      <div><small>Lo que busco</small><span>Un equipo de desarrollo o TI</span></div>
-      <div><small>Lo que aporto</small><span>Python, TypeScript y AWS</span></div>
+  </nav>
+
+  <main>
+    <header class="hero-section">
+      <div class="hero">
+        <figure class="photo">
+          <img src="img/perfil.jpg" alt="Erik Ivan Quijano González">
+        </figure>
+        <div class="hero-text">
+          <span class="eyebrow">Portafolio Profesional · Hidalgo, México</span>
+          <h1>Erik Ivan Quijano González</h1>
+        </div>
+      </div>
+
+      <p class="lead">
+        <strong>Desarrollador Full Stack.</strong> Construyo APIs, aplicaciones web y móviles, y herramientas completas que van desde la arquitectura del código hasta el despliegue en la nube.
+      </p>
+
+      <ul class="contact">
+        <li><a href="mailto:erik.qglz@gmail.com">erik.qglz@gmail.com</a></li>
+        <li>
+          <button type="button" class="copy-btn" id="copyEmail" data-email="erik.qglz@gmail.com">
+            Copiar correo
+          </button>
+        </li>
+        <li><a href="https://github.com/A-Common-Person" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/erik-ivan-quijano-gonz%C3%A1lez-313360355" target="_blank" rel="noopener">LinkedIn</a></li>
+      </ul>
+
+      <div class="pair" aria-label="Enfoque profesional">
+        <div>
+          <small>Lo que busco</small>
+          <span>Un equipo de desarrollo o TI</span>
+        </div>
+        <div>
+          <small>Lo que aporto</small>
+          <span>Python, TypeScript y AWS</span>
+        </div>
+      </div>
+    </header>
+
+    <section aria-labelledby="sobre-mi">
+      <h2 id="sobre-mi">Sobre mí</h2>
+      <p>Desarrollo soluciones de extremo a extremo: desde el diseño de bases de datos y APIs en Python hasta interfaces web y móviles en TypeScript, con despliegue en AWS. He construido un traductor modular de documentos, una API con WebSocket en tiempo real y una aplicación móvil de transporte público.</p>
+      <p>Actualmente curso el último año de Ingeniería en Sistemas Computacionales en el Instituto Tecnológico de Pachuca (egreso previsto en julio de 2027) y cuento con experiencia previa en soporte técnico de infraestructura, lo que me permite entender tanto el ciclo de desarrollo como la operación tecnológica. Resido en Mineral de la Reforma, Hidalgo.</p>
+    </section>
+
+    <section aria-labelledby="proyectos">
+      <h2 id="proyectos">Proyectos</h2>
+      <p class="sub">Proyectos desarrollados de inicio a fin. Haz clic en cualquier captura para ampliarla y revisar los detalles de la interfaz.</p>
+
+      <div class="project-list">
+        <!-- PROYECTO 1: TRANSLATOR PLATFORM -->
+        <article class="card" data-gallery="translator">
+          <div class="thumb thumb-web">
+            <div class="browser-window">
+              <div class="browser-bar">
+                <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                <span class="browser-title" data-browser-label>translator-platform · carga</span>
+              </div>
+              <div class="browser-viewport" role="button" tabindex="0" aria-label="Ampliar captura de Translator Platform">
+                <img
+                  src="img/translator/1.png"
+                  alt="Interfaz de carga y traducción en Translator Platform"
+                  data-active-img
+                  data-index="0"
+                >
+                <span class="zoom-hint">Ampliar captura</span>
+              </div>
+            </div>
+
+            <div class="view-switcher" role="tablist" aria-label="Vistas de Translator Platform">
+              <button
+                type="button"
+                class="view-tab is-active"
+                data-src="img/translator/1.png"
+                data-alt="Interfaz de carga y traducción en Translator Platform"
+                data-label="translator-platform · carga"
+                data-index="0"
+              >
+                1 · Carga y traducción
+              </button>
+              <button
+                type="button"
+                class="view-tab"
+                data-src="img/translator/2.png"
+                data-alt="Editor web de revisión en Translator Platform"
+                data-label="translator-platform · editor"
+                data-index="1"
+              >
+                2 · Editor web
+              </button>
+            </div>
+          </div>
+
+          <div class="body">
+            <p class="tag">Proyecto personal · en desarrollo</p>
+            <h3>Translator Platform</h3>
+            <p class="card-desc">Traductor modular de documentos con revisión humana: traduce un archivo y permite corregirlo en un editor web antes de exportarlo.</p>
+            <ul class="pts">
+              <li>Arquitectura de plugins: parsers y proveedores intercambiables. Hoy procesa EPUB y TXT.</li>
+              <li>Glosario y memoria de traducción en SQLite para mantener términos consistentes y ahorrar llamadas a la API.</li>
+              <li>Flujo web de tres etapas (traducir, revisar y exportar) construido con FastAPI y JavaScript.</li>
+            </ul>
+            <p class="role"><strong>Mi rol:</strong> diseño y desarrollo completos.</p>
+            <ul class="chips">
+              <li>Python</li>
+              <li>FastAPI</li>
+              <li>SQLite</li>
+              <li>DeepL API</li>
+              <li>JavaScript</li>
+            </ul>
+            <div class="card-footer">
+              <div class="btn-group">
+                <a class="btn" href="https://github.com/A-Common-Person/Translator-Platform" target="_blank" rel="noopener">Ver código en GitHub</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- PROYECTO 2: API REST Y WEBSOCKET IOT -->
+        <article class="card" data-gallery="iot">
+          <div class="thumb thumb-web">
+            <div class="browser-window">
+              <div class="browser-bar">
+                <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                <span class="browser-title" data-browser-label>api-vehiculo-iot · swagger & control</span>
+              </div>
+              <div class="browser-viewport" role="button" tabindex="0" aria-label="Ampliar captura de API REST IoT">
+                <img
+                  src="img/iot-api/1.png"
+                  alt="Documentación Swagger e interfaz de control IoT"
+                  data-active-img
+                  data-index="0"
+                >
+                <span class="zoom-hint">Ampliar captura</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="body">
+            <p class="tag">Proyecto académico · desplegado en AWS</p>
+            <h3>API REST y WebSocket para vehículo IoT</h3>
+            <p class="card-desc">Backend en la nube e interfaz de control en tiempo real para operar y monitorear un vehículo IoT.</p>
+            <ul class="pts">
+              <li>21 procedimientos almacenados en MySQL expuestos como endpoints REST documentados con Swagger, más WebSocket seguro (WSS).</li>
+              <li>Desplegado en Amazon EC2 conectado a Amazon RDS, publicado por HTTPS con dominio propio, proxy inverso Caddy y API key en operaciones sensibles.</li>
+            </ul>
+            <p class="role"><strong>Mi rol:</strong> arquitectura backend, base de datos, despliegue en AWS e interfaz de control.</p>
+            <ul class="chips">
+              <li>Python</li>
+              <li>FastAPI</li>
+              <li>MySQL</li>
+              <li>AWS EC2</li>
+              <li>Amazon RDS</li>
+              <li>WebSockets</li>
+            </ul>
+            <div class="card-footer">
+              <div class="btn-group">
+                <a class="btn" href="https://github.com/A-Common-Person/api_vehiculo_iot" target="_blank" rel="noopener">Backend en GitHub</a>
+                <a class="btn btn-primary" href="https://a-common-person.github.io/control-iot/" target="_blank" rel="noopener">Interfaz de control</a>
+              </div>
+              <p class="aws-note">Nota: Si la interfaz aparece desconectada o no responde, la instancia en AWS está apagada temporalmente para evitar cargos.</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- PROYECTO 3: TUZORUTAS -->
+        <article class="card" data-gallery="tuzorutas">
+          <div class="thumb thumb-mobile">
+            <div class="phones">
+              <div class="phone-frame" role="button" tabindex="0" data-index="0" aria-label="Ampliar captura 1 de TuzoRutas">
+                <img src="img/tuzorutas/1.png" alt="Mapa interactivo de rutas en TuzoRutas">
+              </div>
+              <div class="phone-frame" role="button" tabindex="0" data-index="1" aria-label="Ampliar captura 2 de TuzoRutas">
+                <img src="img/tuzorutas/2.png" alt="Detalle de paradas y trayectos en TuzoRutas">
+              </div>
+            </div>
+            <span class="zoom-hint mobile-hint">Clic en una pantalla para ampliar</span>
+          </div>
+
+          <div class="body">
+            <p class="tag">Proyecto en equipo de 3</p>
+            <h3>TuzoRutas</h3>
+            <p class="card-desc">Aplicación móvil multiplataforma para consultar trayectos y paradas de transporte público en Pachuca.</p>
+            <ul class="pts">
+              <li>Mapa interactivo con trazado de trayectos, nombres de ruta y marcadores de paradas.</li>
+              <li>Visualización de las rutas iniciales integrada con la navegación y el diseño general de la aplicación.</li>
+            </ul>
+            <p class="role"><strong>Mi rol:</strong> módulo de mapeo y visualización de rutas.</p>
+            <ul class="chips">
+              <li>React Native</li>
+              <li>Expo</li>
+              <li>TypeScript</li>
+              <li>react-native-maps</li>
+            </ul>
+            <div class="card-footer">
+              <div class="btn-group">
+                <a class="btn" href="https://github.com/lcmarquez2005/TuzoRutas" target="_blank" rel="noopener">Ver código en GitHub</a>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section aria-labelledby="experiencia">
+      <h2 id="experiencia">Experiencia</h2>
+      <div class="job">
+        <h3>Soporte técnico y mantenimiento de equipos</h3>
+        <p class="meta">Servicio social · Instituto Tecnológico de Pachuca · mayo a diciembre de 2025</p>
+        <ul>
+          <li>Soporte técnico a distintos departamentos de la institución: diagnóstico de fallas en equipos, conectividad de red e instalación de software.</li>
+          <li>Mantenimiento preventivo anual de al menos 90 equipos de cómputo, con limpieza física y registro de componentes por número de serie en inventario.</li>
+          <li>Actualización de hardware y software mediante instalación de sistemas operativos Windows, ampliación de memoria RAM y almacenamiento, y clonación de discos.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="habilidades">
+      <h2 id="habilidades">Habilidades y certificación</h2>
+      <dl class="skills">
+        <dt>Certificación</dt>
+        <dd>AWS Academy Graduate - Cloud Foundations (Training Badge)</dd>
+        <dt>Lenguajes</dt>
+        <dd>Python, TypeScript, JavaScript, SQL, Java, HTML/CSS</dd>
+        <dt>Backend y móvil</dt>
+        <dd>FastAPI, React Native (Expo), APIs REST y WebSocket</dd>
+        <dt>Nube y datos</dt>
+        <dd>AWS (EC2, RDS), MySQL, SQLite, HTTPS y proxy inverso</dd>
+        <dt>Herramientas</dt>
+        <dd>Git, GitHub, Swagger, Windows, Linux</dd>
+        <dt>Idiomas</dt>
+        <dd>Español nativo · Inglés B1 (certificación institucional MCER, 2025)</dd>
+      </dl>
+    </section>
+
+    <footer>
+      <span>© 2026 Erik Ivan Quijano González.</span>
+      <span>Escríbeme a <a href="mailto:erik.qglz@gmail.com">erik.qglz@gmail.com</a></span>
+    </footer>
+  </main>
+
+  <!-- Modal Lightbox para inspección de capturas -->
+  <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Visor de capturas">
+    <div class="lightbox-dialog">
+      <div class="lightbox-header">
+        <span class="lightbox-caption" id="lightboxCaption"></span>
+        <button type="button" class="lightbox-close" id="lightboxClose" aria-label="Cerrar visor">✕ Cerrar</button>
+      </div>
+      <div class="lightbox-stage">
+        <button type="button" class="lightbox-nav prev" id="lightboxPrev" aria-label="Captura anterior">‹</button>
+        <img id="lightboxImg" src="" alt="">
+        <button type="button" class="lightbox-nav next" id="lightboxNext" aria-label="Siguiente captura">›</button>
+      </div>
     </div>
-  </header>
-
-  <h2 id="sobre-mi">Sobre mí</h2>
-  <p>Desarrollo soluciones de extremo a extremo: desde el diseño de bases de datos y APIs en Python hasta interfaces web y móviles en TypeScript, con despliegue en AWS. He construido un traductor modular de documentos, una API con WebSocket en tiempo real y una aplicación móvil de transporte público.</p>
-  <p>Actualmente curso el último año de Ingeniería en Sistemas Computacionales en el Instituto Tecnológico de Pachuca (egreso previsto en julio de 2027) y cuento con experiencia previa en soporte técnico de infraestructura, lo que me permite entender tanto el ciclo de desarrollo como la operación tecnológica.</p>
-
-  <h2 id="proyectos">Proyectos</h2>
-  <p class="sub">Proyectos que puedes abrir y revisar. Cada tarjeta enlaza a su código.</p>
-  <div class="grid">
-
-    <article class="card feat">
-      <div class="thumb">
-        <div class="phones">
-          <img src="img/translator/1.png" alt="Interfaz de carga y traducción en Translator Platform">
-          <img src="img/translator/2.png" alt="Editor web de revisión en Translator Platform">
-        </div>
-      </div>
-      <div class="body">
-        <p class="tag">Proyecto personal · en desarrollo</p>
-        <h3>Translator Platform</h3>
-        <p>Traductor modular de documentos con revisión humana: traduce un archivo y permite corregirlo en un editor web antes de exportarlo.</p>
-        <ul class="pts">
-          <li>Arquitectura de plugins: parsers y proveedores intercambiables. Hoy procesa EPUB y TXT.</li>
-          <li>Glosario y memoria de traducción en SQLite para mantener términos consistentes y ahorrar llamadas a la API.</li>
-        </ul>
-        <p class="role"><strong>Mi rol:</strong> diseño y desarrollo completos.</p>
-        <ul class="chips"><li>Python</li><li>FastAPI</li><li>SQLite</li><li>DeepL API</li><li>JavaScript</li></ul>
-        <div class="card-footer">
-          <div class="btn-group">
-            <a class="btn" href="https://github.com/A-Common-Person/Translator-Platform" target="_blank" rel="noopener">Ver código en GitHub</a>
-          </div>
-        </div>
-      </div>
-    </article>
-
-    <article class="card">
-      <div class="thumb">
-        <img src="img/iot-api/1.png" alt="Documentación Swagger de API REST IoT">
-      </div>
-      <div class="body">
-        <p class="tag">Proyecto académico · desplegado en AWS</p>
-        <h3>API REST y WebSocket para vehículo IoT</h3>
-        <p>API que controla un vehículo IoT y transmite su estado en tiempo real.</p>
-        <ul class="pts">
-          <li>21 procedimientos almacenados expuestos como endpoints REST con Swagger, más WebSocket seguro (WSS).</li>
-          <li>EC2 + RDS, HTTPS con dominio propio y API key en operaciones sensibles.</li>
-        </ul>
-        <p class="role"><strong>Mi rol:</strong> desarrollo, base de datos y despliegue.</p>
-        <ul class="chips"><li>Python</li><li>FastAPI</li><li>MySQL</li><li>AWS EC2</li><li>Amazon RDS</li></ul>
-        <div class="card-footer">
-          <div class="btn-group">
-            <a class="btn" href="https://github.com/A-Common-Person/api_vehiculo_iot" target="_blank" rel="noopener">Código en GitHub</a>
-            <a class="btn btn-primary" href="https://a-common-person.github.io/control-iot/" target="_blank" rel="noopener">Interfaz de control</a>
-          </div>
-          <p class="aws-note">Nota: Si la interfaz aparece desconectada o no responde, la instancia en AWS está apagada temporalmente para evitar cargos.</p>
-        </div>
-      </div>
-    </article>
-
-    <article class="card">
-      <div class="thumb">
-        <div class="phones">
-          <img src="img/tuzorutas/1.png" alt="Mapa de rutas en TuzoRutas">
-          <img src="img/tuzorutas/2.png" alt="Detalle de paradas en TuzoRutas">
-        </div>
-      </div>
-      <div class="body">
-        <p class="tag">Proyecto en equipo de 3</p>
-        <h3>TuzoRutas</h3>
-        <p>Aplicación móvil para consultar rutas de transporte público.</p>
-        <ul class="pts">
-          <li>Mapa con trayectos, nombres de ruta y paradas.</li>
-          <li>Visualización de las rutas iniciales, integrada con la navegación de la app.</li>
-        </ul>
-        <p class="role"><strong>Mi rol:</strong> módulo de mapeo y visualización de rutas.</p>
-        <ul class="chips"><li>React Native</li><li>Expo</li><li>TypeScript</li><li>react-native-maps</li></ul>
-        <div class="card-footer">
-          <div class="btn-group">
-            <a class="btn" href="https://github.com/lcmarquez2005/TuzoRutas" target="_blank" rel="noopener">Ver código en GitHub</a>
-          </div>
-        </div>
-      </div>
-    </article>
-
-    <!-- PLANTILLA PARA AGREGAR MÁS PROYECTOS (descomenta este bloque y rellena tus datos):
-    <article class="card">
-      <div class="thumb">
-        <img src="img/carpeta-proyecto/1.png" alt="Captura del proyecto">
-      </div>
-      <div class="body">
-        <p class="tag">Tipo de proyecto · contexto</p>
-        <h3>Nombre del Proyecto</h3>
-        <p>Descripción breve de qué hace y qué problema resuelve.</p>
-        <ul class="pts">
-          <li>Logro técnico o característica principal 1.</li>
-          <li>Logro técnico o característica principal 2.</li>
-        </ul>
-        <p class="role"><strong>Mi rol:</strong> tu participación en el proyecto.</p>
-        <ul class="chips"><li>Tech 1</li><li>Tech 2</li><li>Tech 3</li></ul>
-        <div class="card-footer">
-          <div class="btn-group">
-            <a class="btn" href="https://github.com/A-Common-Person/REPOSITORIO" target="_blank" rel="noopener">Ver código en GitHub</a>
-          </div>
-        </div>
-      </div>
-    </article>
-    -->
-
   </div>
 
-  <h2 id="experiencia">Experiencia</h2>
-  <div class="job">
-    <h3>Soporte técnico y mantenimiento de equipos</h3>
-    <p class="meta">Servicio social · Instituto Tecnológico de Pachuca · mayo a diciembre de 2025</p>
-    <ul>
-      <li>Soporte a distintos departamentos: fallas de equipos, conectividad e instalación de software.</li>
-      <li>Mantenimiento preventivo anual de al menos 90 equipos, con registro de componentes por número de serie.</li>
-      <li>Instalación de Windows, ampliación de RAM y almacenamiento, y clonación de discos.</li>
-    </ul>
-  </div>
+  <script>
+    (function () {
+      /* 1. Tema claro / oscuro */
+      const root = document.documentElement;
+      const themeBtn = document.getElementById('themeToggle');
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme) root.setAttribute('data-theme', savedTheme);
 
-  <h2 id="habilidades">Habilidades y certificación</h2>
-  <dl class="skills">
-    <dt>Certificación</dt><dd>AWS Academy Graduate - Cloud Foundations (Training Badge)</dd>
-    <dt>Lenguajes</dt><dd>Python, TypeScript, JavaScript, SQL, Java, HTML/CSS</dd>
-    <dt>Backend y móvil</dt><dd>FastAPI, React Native (Expo), APIs REST y WebSocket</dd>
-    <dt>Nube y datos</dt><dd>AWS (EC2, RDS), MySQL, SQLite, HTTPS y proxy inverso</dd>
-    <dt>Herramientas</dt><dd>Git, GitHub, Swagger, Windows, Linux</dd>
-    <dt>Idiomas</dt><dd>Español nativo · Inglés B1 (certificación institucional MCER, 2025)</dd>
-  </dl>
+      function isDarkMode() {
+        return root.getAttribute('data-theme') === 'dark' ||
+          (!root.hasAttribute('data-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      }
 
-  <footer>
-    <span>© 2026 Erik Ivan Quijano González.</span>
-    <span>Escríbeme a <a href="mailto:erik.qglz@gmail.com">erik.qglz@gmail.com</a></span>
-  </footer>
-</main>
+      function updateThemeLabel() {
+        themeBtn.textContent = isDarkMode() ? '☀ Claro' : '☾ Oscuro';
+      }
+      updateThemeLabel();
 
-<script>
-(function(){
-  const root = document.documentElement;
-  const btn = document.getElementById('themeToggle');
-  const saved = localStorage.getItem('theme');
-  if (saved) root.setAttribute('data-theme', saved);
+      themeBtn.addEventListener('click', () => {
+        const next = isDarkMode() ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        updateThemeLabel();
+      });
 
-  function updateLabel() {
-    const isDark = root.getAttribute('data-theme') === 'dark' ||
-      (!root.hasAttribute('data-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
-    btn.textContent = isDark ? '☀ Claro' : '☾ Oscuro';
-  }
-  updateLabel();
+      /* 2. Copiar correo al portapapeles */
+      const copyBtn = document.getElementById('copyEmail');
+      if (copyBtn) {
+        copyBtn.addEventListener('click', async () => {
+          const email = copyBtn.getAttribute('data-email');
+          try {
+            await navigator.clipboard.writeText(email);
+            const original = copyBtn.textContent;
+            copyBtn.textContent = '✓ Copiado';
+            copyBtn.classList.add('is-copied');
+            setTimeout(() => {
+              copyBtn.textContent = original;
+              copyBtn.classList.remove('is-copied');
+            }, 2000);
+          } catch (_) {
+            window.location.href = 'mailto:' + email;
+          }
+        });
+      }
 
-  btn.addEventListener('click', () => {
-    const isDark = root.getAttribute('data-theme') === 'dark' ||
-      (!root.hasAttribute('data-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
-    const next = isDark ? 'light' : 'dark';
-    root.setAttribute('data-theme', next);
-    localStorage.setItem('theme', next);
-    updateLabel();
-  });
-})();
-</script>
+      /* 3. Selector de vistas en tarjetas web */
+      document.querySelectorAll('.card').forEach((card) => {
+        const tabs = card.querySelectorAll('.view-tab');
+        const activeImg = card.querySelector('[data-active-img]');
+        const browserLabel = card.querySelector('[data-browser-label]');
+
+        tabs.forEach((tab) => {
+          tab.addEventListener('click', () => {
+            tabs.forEach((t) => t.classList.remove('is-active'));
+            tab.classList.add('is-active');
+            if (activeImg) {
+              activeImg.src = tab.dataset.src;
+              activeImg.alt = tab.dataset.alt;
+              activeImg.dataset.index = tab.dataset.index;
+            }
+            if (browserLabel && tab.dataset.label) {
+              browserLabel.textContent = tab.dataset.label;
+            }
+          });
+        });
+      });
+
+      /* 4. Lightbox para ampliar capturas */
+      const galleries = {
+        translator: [
+          { src: 'img/translator/1.png', caption: 'Translator Platform — Interfaz de carga y configuración de traducción' },
+          { src: 'img/translator/2.png', caption: 'Translator Platform — Editor web de revisión y exportación' }
+        ],
+        iot: [
+          { src: 'img/iot-api/1.png', caption: 'API REST y WebSocket IoT — Documentación Swagger e interfaz de control' }
+        ],
+        tuzorutas: [
+          { src: 'img/tuzorutas/1.png', caption: 'TuzoRutas — Mapa interactivo de rutas en Pachuca' },
+          { src: 'img/tuzorutas/2.png', caption: 'TuzoRutas — Detalle de paradas y trayectos' }
+        ]
+      };
+
+      const lightbox = document.getElementById('lightbox');
+      const lbImg = document.getElementById('lightboxImg');
+      const lbCaption = document.getElementById('lightboxCaption');
+      const lbClose = document.getElementById('lightboxClose');
+      const lbPrev = document.getElementById('lightboxPrev');
+      const lbNext = document.getElementById('lightboxNext');
+
+      let currentGallery = [];
+      let currentIndex = 0;
+
+      function renderLightbox() {
+        const item = currentGallery[currentIndex];
+        if (!item) return;
+        lbImg.src = item.src;
+        lbImg.alt = item.caption;
+        const counter = currentGallery.length > 1 ? ` (${currentIndex + 1}/${currentGallery.length})` : '';
+        lbCaption.textContent = item.caption + counter;
+        const hasMultiple = currentGallery.length > 1;
+        lbPrev.style.display = hasMultiple ? 'grid' : 'none';
+        lbNext.style.display = hasMultiple ? 'grid' : 'none';
+      }
+
+      function openLightbox(galleryKey, index) {
+        currentGallery = galleries[galleryKey] || [];
+        if (!currentGallery.length) return;
+        currentIndex = Math.max(0, Math.min(index, currentGallery.length - 1));
+        renderLightbox();
+        lightbox.classList.add('is-open');
+        lightbox.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        lbClose.focus();
+      }
+
+      function closeLightbox() {
+        lightbox.classList.remove('is-open');
+        lightbox.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
+
+      function stepLightbox(delta) {
+        if (currentGallery.length <= 1) return;
+        currentIndex = (currentIndex + delta + currentGallery.length) % currentGallery.length;
+        renderLightbox();
+      }
+
+      document.querySelectorAll('.browser-viewport').forEach((vp) => {
+        const open = () => {
+          const card = vp.closest('[data-gallery]');
+          const img = vp.querySelector('[data-active-img]');
+          if (card && img) openLightbox(card.dataset.gallery, Number(img.dataset.index || 0));
+        };
+        vp.addEventListener('click', open);
+        vp.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); }
+        });
+      });
+
+      document.querySelectorAll('.phone-frame').forEach((frame) => {
+        const open = () => {
+          const card = frame.closest('[data-gallery]');
+          if (card) openLightbox(card.dataset.gallery, Number(frame.dataset.index || 0));
+        };
+        frame.addEventListener('click', open);
+        frame.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); }
+        });
+      });
+
+      lbClose.addEventListener('click', closeLightbox);
+      lbPrev.addEventListener('click', () => stepLightbox(-1));
+      lbNext.addEventListener('click', () => stepLightbox(1));
+
+      lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) closeLightbox();
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (!lightbox.classList.contains('is-open')) return;
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft') stepLightbox(-1);
+        if (e.key === 'ArrowRight') stepLightbox(1);
+      });
+    })();
+  </script>
 </body>
 </html>
