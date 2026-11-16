@@ -65,7 +65,7 @@
 
     <section aria-labelledby="sobre-mi">
       <h2 id="sobre-mi">Sobre mí</h2>
-      <p>Desarrollo soluciones de extremo a extremo: desde el diseño de bases de datos y APIs en Python hasta interfaces web y móviles en TypeScript, con despliegue en AWS. He construido un traductor modular de documentos, una API con WebSocket en tiempo real y una aplicación móvil de transporte público.</p>
+      <p>Desarrollo soluciones de extremo a extremo: desde el diseño de bases de datos y APIs en Python hasta interfaces web y móviles en TypeScript, con despliegue en AWS. He construido un traductor modular de documentos, un sistema IoT dividido en cliente web en tiempo real y API en la nube, y una aplicación móvil de transporte público.</p>
       <p>Actualmente curso el último año de Ingeniería en Sistemas Computacionales en el Instituto Tecnológico de Pachuca (egreso previsto en julio de 2027) y cuento con experiencia previa en soporte técnico de infraestructura, lo que me permite entender tanto el ciclo de desarrollo como la operación tecnológica. Resido en Mineral de la Reforma, Hidalgo.</p>
     </section>
 
@@ -142,18 +142,18 @@
           </div>
         </article>
 
-        <!-- PROYECTO 2: API REST Y WEBSOCKET IOT -->
-        <article class="card" data-gallery="iot">
+        <!-- PROYECTO 2: INTERFAZ WEB CONTROL IOT -->
+        <article class="card" data-gallery="control_iot">
           <div class="thumb thumb-web">
             <div class="browser-window">
               <div class="browser-bar">
                 <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
-                <span class="browser-title" data-browser-label>api-vehiculo-iot · swagger & control</span>
+                <span class="browser-title" data-browser-label>control-iot · panel en tiempo real</span>
               </div>
-              <div class="browser-viewport" role="button" tabindex="0" aria-label="Ampliar captura de API REST IoT">
+              <div class="browser-viewport" role="button" tabindex="0" aria-label="Ampliar captura de Control IoT">
                 <img
                   src="img/iot-api/1.png"
-                  alt="Documentación Swagger e interfaz de control IoT"
+                  alt="Interfaz web de control y monitoreo en tiempo real para vehículo IoT"
                   data-active-img
                   data-index="0"
                 >
@@ -163,14 +163,69 @@
           </div>
 
           <div class="body">
-            <p class="tag">Proyecto académico · desplegado en AWS</p>
+            <p class="tag">Frontend & Tiempo Real · GitHub Pages</p>
+            <h3>Control IoT — Interfaz de Monitoreo</h3>
+            <p class="card-desc">Cliente web interactivo para operar un vehículo IoT en tiempo real, visualizar el último movimiento ejecutado y consultar el historial reciente.</p>
+            <ul class="pts">
+              <li>Conexión bidireccional de baja latencia mediante WebSockets seguros (WSS) y consumo de endpoints REST.</li>
+              <li>Panel con controles de dirección en vivo, tarjeta de último estado y tabla dinámica con los últimos 10 registros.</li>
+              <li>Desplegado en GitHub Pages de forma desacoplada para comunicarse con la API en AWS.</li>
+            </ul>
+            <p class="role"><strong>Mi rol:</strong> diseño de interfaz, integración WebSocket/REST y despliegue frontend.</p>
+            <ul class="chips">
+              <li>HTML5</li>
+              <li>CSS3</li>
+              <li>JavaScript</li>
+              <li>WebSockets (WSS)</li>
+              <li>REST API</li>
+              <li>GitHub Pages</li>
+            </ul>
+            <div class="card-footer">
+              <div class="btn-group">
+                <a class="btn" href="https://github.com/A-Common-Person/control-iot" target="_blank" rel="noopener">Código en GitHub</a>
+                <a class="btn btn-primary" href="https://a-common-person.github.io/control-iot/" target="_blank" rel="noopener">Abrir interfaz</a>
+              </div>
+              <p class="aws-note">Nota: Si la interfaz aparece desconectada o no responde, la instancia del backend en AWS está apagada temporalmente para evitar cargos.</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- PROYECTO 3: API REST Y WEBSOCKET IOT -->
+        <article class="card" data-gallery="api_iot">
+          <div class="thumb thumb-web">
+            <div class="browser-window">
+              <div class="browser-bar">
+                <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                <span class="browser-title" data-browser-label>api-vehiculo-iot · swagger & aws</span>
+              </div>
+              <div class="browser-viewport is-placeholder" role="button" tabindex="0" aria-label="Ampliar captura de API REST IoT">
+                <img
+                  src="img/iot-api/2.png"
+                  alt="Documentación Swagger de API REST y WebSocket para vehículo IoT"
+                  data-active-img
+                  data-index="0"
+                  onload="this.parentElement.classList.remove('is-placeholder')"
+                  onerror="this.style.display='none'"
+                >
+                <div class="placeholder-box" aria-hidden="true">
+                  <span class="placeholder-badge">Swagger / API</span>
+                  <strong>Captura pendiente</strong>
+                  <small>Guarda la imagen en <code>img/iot-api/2.png</code></small>
+                </div>
+                <span class="zoom-hint">Ampliar captura</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="body">
+            <p class="tag">Backend & Cloud · desplegado en AWS</p>
             <h3>API REST y WebSocket para vehículo IoT</h3>
-            <p class="card-desc">Backend en la nube e interfaz de control en tiempo real para operar y monitorear un vehículo IoT.</p>
+            <p class="card-desc">Servicio backend en la nube encargado de gestionar la lógica de control, persistencia de movimientos y transmisión de eventos en tiempo real.</p>
             <ul class="pts">
               <li>21 procedimientos almacenados en MySQL expuestos como endpoints REST documentados con Swagger, más WebSocket seguro (WSS).</li>
-              <li>Desplegado en Amazon EC2 conectado a Amazon RDS, publicado por HTTPS con dominio propio, proxy inverso Caddy y API key en operaciones sensibles.</li>
+              <li>Desplegado en Amazon EC2 conectado a Amazon RDS, publicado por HTTPS con dominio propio, proxy inverso Caddy y autenticación por API key.</li>
             </ul>
-            <p class="role"><strong>Mi rol:</strong> arquitectura backend, base de datos, despliegue en AWS e interfaz de control.</p>
+            <p class="role"><strong>Mi rol:</strong> arquitectura backend, base de datos relacional y despliegue en AWS.</p>
             <ul class="chips">
               <li>Python</li>
               <li>FastAPI</li>
@@ -181,15 +236,13 @@
             </ul>
             <div class="card-footer">
               <div class="btn-group">
-                <a class="btn" href="https://github.com/A-Common-Person/api_vehiculo_iot" target="_blank" rel="noopener">Backend en GitHub</a>
-                <a class="btn btn-primary" href="https://a-common-person.github.io/control-iot/" target="_blank" rel="noopener">Interfaz de control</a>
+                <a class="btn" href="https://github.com/A-Common-Person/api_vehiculo_iot" target="_blank" rel="noopener">Ver código en GitHub</a>
               </div>
-              <p class="aws-note">Nota: Si la interfaz aparece desconectada o no responde, la instancia en AWS está apagada temporalmente para evitar cargos.</p>
             </div>
           </div>
         </article>
 
-        <!-- PROYECTO 3: TUZORUTAS -->
+        <!-- PROYECTO 4: TUZORUTAS -->
         <article class="card" data-gallery="tuzorutas">
           <div class="thumb thumb-mobile">
             <div class="phones">
@@ -353,8 +406,11 @@
           { src: 'img/translator/1.png', caption: 'Translator Platform — Interfaz de carga y configuración de traducción' },
           { src: 'img/translator/2.png', caption: 'Translator Platform — Editor web de revisión y exportación' }
         ],
-        iot: [
-          { src: 'img/iot-api/1.png', caption: 'API REST y WebSocket IoT — Documentación Swagger e interfaz de control' }
+        control_iot: [
+          { src: 'img/iot-api/1.png', caption: 'Control IoT — Interfaz web de control y monitoreo en tiempo real' }
+        ],
+        api_iot: [
+          { src: 'img/iot-api/2.png', caption: 'API REST y WebSocket IoT — Documentación Swagger y despliegue en AWS' }
         ],
         tuzorutas: [
           { src: 'img/tuzorutas/1.png', caption: 'TuzoRutas — Mapa interactivo de rutas en Pachuca' },
@@ -409,6 +465,7 @@
 
       document.querySelectorAll('.browser-viewport').forEach((vp) => {
         const open = () => {
+          if (vp.classList.contains('is-placeholder')) return;
           const card = vp.closest('[data-gallery]');
           const img = vp.querySelector('[data-active-img]');
           if (card && img) openLightbox(card.dataset.gallery, Number(img.dataset.index || 0));

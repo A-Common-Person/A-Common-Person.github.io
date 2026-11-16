@@ -498,6 +498,19 @@ button:focus-visible,
   overflow: hidden;
   cursor: zoom-in;
   background: var(--surface);
+  display: grid;
+  place-items: center;
+}
+
+.browser-viewport.is-placeholder {
+  cursor: default;
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--surface),
+    var(--surface) 10px,
+    var(--surface-subtle) 10px,
+    var(--surface-subtle) 20px
+  );
 }
 
 .browser-viewport img {
@@ -510,8 +523,54 @@ button:focus-visible,
   transition: transform 0.35s ease;
 }
 
-.browser-viewport:hover img {
+.browser-viewport:not(.is-placeholder):hover img {
   transform: scale(1.02);
+}
+
+/* Placeholder visual mientras se agrega la captura */
+.placeholder-box {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 8px;
+  padding: 24px;
+  min-height: 230px;
+  color: var(--muted);
+}
+
+.browser-viewport.is-placeholder .placeholder-box {
+  display: flex;
+}
+
+.placeholder-badge {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.72rem;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  border: 1px solid var(--accent-border);
+  color: var(--accent);
+}
+
+.placeholder-box strong {
+  font-size: 0.95rem;
+  color: var(--ink);
+}
+
+.placeholder-box small {
+  font-size: 0.8rem;
+}
+
+.placeholder-box code {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.76rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: var(--surface-subtle);
+  border: 1px solid var(--line-strong);
+  color: var(--ink);
 }
 
 /* Selector interactivo de capturas web */
@@ -601,8 +660,12 @@ button:focus-visible,
   pointer-events: none;
 }
 
-.browser-viewport:hover .zoom-hint,
-.browser-viewport:focus-visible .zoom-hint {
+.browser-viewport.is-placeholder .zoom-hint {
+  display: none;
+}
+
+.browser-viewport:not(.is-placeholder):hover .zoom-hint,
+.browser-viewport:not(.is-placeholder):focus-visible .zoom-hint {
   opacity: 1;
   transform: translateY(0);
 }
