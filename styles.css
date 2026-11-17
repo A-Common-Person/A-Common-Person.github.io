@@ -14,10 +14,12 @@
   --line-strong: #cbd5e1;
 
   --accent: #1d4ed8;
+  --accent-secondary: #0284c7;
   --accent-hover: #1e40af;
   --accent-soft: rgba(29, 78, 216, 0.08);
   --accent-border: rgba(29, 78, 216, 0.28);
 
+  --title-gradient: linear-gradient(125deg, #0f172a 15%, #1d4ed8 65%, #0284c7 100%);
   --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.04);
   --shadow-md: 0 14px 32px -8px rgba(15, 23, 42, 0.1), 0 4px 12px -4px rgba(15, 23, 42, 0.05);
   --glow: radial-gradient(ellipse 80% 45% at 50% -10%, rgba(29, 78, 216, 0.1), transparent);
@@ -45,10 +47,12 @@
     --line-strong: #334155;
 
     --accent: #60a5fa;
+    --accent-secondary: #38bdf8;
     --accent-hover: #3b82f6;
     --accent-soft: rgba(96, 165, 250, 0.12);
     --accent-border: rgba(96, 165, 250, 0.34);
 
+    --title-gradient: linear-gradient(125deg, #f8fafc 20%, #93c5fd 65%, #38bdf8 100%);
     --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
     --shadow-md: 0 18px 36px -8px rgba(0, 0, 0, 0.62), 0 4px 14px -4px rgba(0, 0, 0, 0.4);
     --glow: radial-gradient(ellipse 80% 45% at 50% -10%, rgba(59, 130, 246, 0.18), transparent);
@@ -69,10 +73,12 @@
   --line-strong: #334155;
 
   --accent: #60a5fa;
+  --accent-secondary: #38bdf8;
   --accent-hover: #3b82f6;
   --accent-soft: rgba(96, 165, 250, 0.12);
   --accent-border: rgba(96, 165, 250, 0.34);
 
+  --title-gradient: linear-gradient(125deg, #f8fafc 20%, #93c5fd 65%, #38bdf8 100%);
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
   --shadow-md: 0 18px 36px -8px rgba(0, 0, 0, 0.62), 0 4px 14px -4px rgba(0, 0, 0, 0.4);
   --glow: radial-gradient(ellipse 80% 45% at 50% -10%, rgba(59, 130, 246, 0.18), transparent);
@@ -102,7 +108,7 @@ body {
   background-image: var(--glow);
   background-repeat: no-repeat;
   color: var(--ink);
-  font: 16.5px/1.68 "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font: 16.5px/1.72 "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   counter-reset: section-counter;
@@ -114,18 +120,32 @@ body {
 }
 
 main {
-  max-width: 1000px;
+  max-width: 1180px;
   margin: 0 auto;
   padding: 60px 24px 96px;
 }
 
-section > p,
-.job,
-.skills,
+/* Secciones alineadas de extremo a extremo al ancho completo del contenedor */
 .lead,
 .pair,
-.contact {
-  max-width: 780px;
+.contact,
+.prose-block,
+.timeline,
+.skills {
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Animación de entrada editorial */
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1), transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 h1,
@@ -142,12 +162,21 @@ h1 {
   font-size: clamp(2.35rem, 6vw, 3.45rem);
 }
 
+/* Efecto degradado sutil y elegante en el nombre principal */
+.hero-title {
+  background: var(--title-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+}
+
 h2 {
   font-size: 1.75rem;
-  margin: 80px 0 16px;
+  margin: 76px 0 18px;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   counter-increment: section-counter;
 }
 
@@ -157,6 +186,10 @@ h2::before {
   font-size: 0.9rem;
   font-weight: 500;
   color: var(--accent);
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: var(--accent-soft);
+  border: 1px solid var(--accent-border);
 }
 
 h2::after {
@@ -164,7 +197,6 @@ h2::after {
   flex: 1;
   height: 1px;
   background: linear-gradient(90deg, var(--line-strong), transparent);
-  max-width: 180px;
 }
 
 h3 {
@@ -205,7 +237,7 @@ button:focus-visible,
 }
 
 .topbar-inner {
-  max-width: 1000px;
+  max-width: 1180px;
   margin: 0 auto;
   padding: 12px 24px;
   display: flex;
@@ -237,15 +269,35 @@ button:focus-visible,
 }
 
 .nav-links a {
+  position: relative;
   font-size: 0.88rem;
   font-weight: 500;
   color: var(--muted);
   text-decoration: none;
+  padding: 4px 0;
   transition: color 0.18s ease;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.24s ease;
 }
 
 .nav-links a:hover {
   color: var(--ink);
+}
+
+.nav-links a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
 }
 
 .theme-btn {
@@ -309,21 +361,74 @@ button:focus-visible,
   font-size: 0.78rem;
   font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   color: var(--accent);
 }
 
 .lead {
-  font-size: 1.15rem;
+  font-size: 1.12rem;
   color: var(--muted);
-  max-width: 38em;
   margin-top: 22px;
-  line-height: 1.65;
+  line-height: 1.7;
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
 }
 
-.lead strong {
+/* Subrayado elegante tipo marcador suave en el rol principal */
+.text-highlight {
   color: var(--ink);
+  font-weight: 700;
+  background: linear-gradient(transparent 62%, var(--accent-soft) 62%);
+  padding: 0 3px;
+  border-radius: 3px;
+}
+
+/* Bloque editorial justificado de extremo a extremo para "Sobre mí" */
+.prose-block {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius-md);
+  padding: 24px 28px;
+  box-shadow: var(--shadow-sm);
+  transition: border-color 0.22s ease, box-shadow 0.22s ease;
+}
+
+.prose-block:hover {
+  border-color: var(--accent-border);
+  border-left-color: var(--accent);
+  box-shadow: var(--shadow-md);
+}
+
+.prose-block p {
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+  color: var(--ink);
+  margin-bottom: 14px;
+}
+
+.prose-block p:last-child {
+  margin-bottom: 0;
+}
+
+/* Resaltado sutil e interactivo de palabras clave técnicas dentro de párrafos */
+.kw {
   font-weight: 600;
+  color: var(--ink);
+  background-image: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+  background-size: 100% 1.5px;
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  padding-bottom: 1px;
+  transition: color 0.18s ease, background-color 0.18s ease;
+}
+
+.kw:hover {
+  color: var(--accent);
+  background-color: var(--accent-soft);
+  border-radius: 3px;
 }
 
 .contact {
@@ -368,7 +473,7 @@ button:focus-visible,
 .pair {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  margin-top: 34px;
+  margin-top: 30px;
   border: 1px solid var(--line);
   border-radius: var(--radius-md);
   overflow: hidden;
@@ -377,7 +482,7 @@ button:focus-visible,
 }
 
 .pair div {
-  padding: 18px 22px;
+  padding: 18px 24px;
 }
 
 .pair div + div {
@@ -391,13 +496,13 @@ button:focus-visible,
   font-family: "JetBrains Mono", monospace;
   font-size: 0.75rem;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
   margin-bottom: 4px;
 }
 
 .pair span {
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 1.02rem;
   color: var(--ink);
 }
 
@@ -414,7 +519,7 @@ button:focus-visible,
   display: flex;
   flex-direction: column;
   gap: 34px;
-  margin-top: 28px;
+  margin-top: 24px;
 }
 
 .card {
@@ -703,6 +808,8 @@ button:focus-visible,
   color: var(--muted);
   font-size: 0.97rem;
   margin-bottom: 12px;
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 .card ul.pts {
@@ -714,6 +821,8 @@ button:focus-visible,
 
 .card ul.pts li {
   margin-bottom: 7px;
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 .card ul.pts li::marker {
@@ -751,6 +860,12 @@ button:focus-visible,
   border-radius: 999px;
   color: var(--accent);
   font-weight: 500;
+  transition: transform 0.16s ease, background 0.16s ease;
+}
+
+.chips li:hover {
+  transform: translateY(-1px);
+  background: var(--surface-subtle);
 }
 
 .card-footer {
@@ -819,36 +934,65 @@ button:focus-visible,
   border-radius: var(--radius-sm);
   background: var(--surface-subtle);
   border-left: 3px solid var(--accent);
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 /* ==========================================================================
-   Experiencia (Línea de tiempo)
+   Experiencia (Línea de tiempo justificada de extremo a extremo)
    ========================================================================== */
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  margin-top: 18px;
+}
 
 .job {
   position: relative;
-  padding: 4px 0 4px 24px;
-  margin-top: 18px;
-  border-left: 2px solid var(--line-strong);
+  padding: 22px 26px 22px 30px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.job:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--accent-border);
+  border-left-color: var(--accent);
 }
 
 .job::before {
   content: "";
   position: absolute;
-  left: -6px;
-  top: 9px;
-  width: 10px;
-  height: 10px;
+  left: -7px;
+  top: 26px;
+  width: 11px;
+  height: 11px;
   border-radius: 50%;
   background: var(--accent);
-  box-shadow: 0 0 0 4px var(--accent-soft);
+  box-shadow: 0 0 0 4px var(--surface), 0 0 0 6px var(--accent-soft);
+}
+
+.job h3 {
+  transition: color 0.18s ease;
+}
+
+.job:hover h3 {
+  color: var(--accent);
 }
 
 .meta {
   font-family: "JetBrains Mono", monospace;
   color: var(--muted);
   font-size: 0.82rem;
-  margin: 4px 0 12px;
+  margin: 6px 0 14px;
+  letter-spacing: 0.01em;
 }
 
 .job ul {
@@ -858,11 +1002,76 @@ button:focus-visible,
 }
 
 .job li {
-  margin-bottom: 7px;
+  margin-bottom: 8px;
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+}
+
+.job li:last-child {
+  margin-bottom: 0;
 }
 
 .job li::marker {
   color: var(--accent);
+}
+
+
+/* Fotografía rectangular centrada fuera y debajo del bloque de experiencia */
+.exp-media {
+  margin: 6px auto 0;
+  max-width: 340px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.exp-photo-frame {
+  position: relative;
+  width: 100%;
+  border-radius: var(--radius-md);
+  padding: 6px;
+  overflow: hidden;
+  border: 1px solid var(--line-strong);
+  background: var(--surface);
+  box-shadow: var(--shadow-md);
+  cursor: zoom-in;
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.exp-photo-frame:hover {
+  border-color: var(--accent);
+  transform: translateY(-3px);
+}
+
+.exp-photo-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 430px;
+  object-fit: cover;
+  object-position: center 20%;
+  border-radius: 8px;
+  transition: transform 0.35s ease;
+}
+
+.exp-photo-frame:hover img {
+  transform: scale(1.015);
+}
+
+.exp-photo-frame:hover .zoom-hint,
+.exp-photo-frame:focus-visible .zoom-hint {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.exp-media figcaption {
+  margin-top: 10px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.76rem;
+  color: var(--muted);
+  text-align: center;
 }
 
 /* ==========================================================================
@@ -871,7 +1080,7 @@ button:focus-visible,
 
 .skills {
   display: grid;
-  grid-template-columns: 170px 1fr;
+  grid-template-columns: 185px 1fr;
   margin: 18px 0 0;
   border: 1px solid var(--line);
   border-radius: var(--radius-md);
@@ -882,7 +1091,7 @@ button:focus-visible,
 
 .skills dt,
 .skills dd {
-  padding: 14px 20px;
+  padding: 14px 22px;
   border-bottom: 1px solid var(--line);
 }
 
@@ -1066,6 +1275,19 @@ footer {
     font-size: 1.4rem;
   }
 
+  .prose-block,
+  .job {
+    padding: 18px 20px;
+  }
+
+  .lead,
+  .prose-block p,
+  .job li,
+  .card-desc,
+  .card ul.pts li {
+    text-align: left;
+  }
+
   .view-switcher {
     grid-template-columns: 1fr;
   }
@@ -1098,6 +1320,11 @@ footer {
     scroll-behavior: auto;
   }
 
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+
   *,
   *::before,
   *::after {
@@ -1115,6 +1342,16 @@ footer {
     display: none !important;
   }
 
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .hero-title {
+    background: none;
+    color: #000000;
+  }
+
   body {
     background: #ffffff;
     color: #000000;
@@ -1122,7 +1359,9 @@ footer {
 
   .card,
   .pair,
-  .skills {
+  .skills,
+  .prose-block,
+  .job {
     box-shadow: none;
     break-inside: avoid;
   }
